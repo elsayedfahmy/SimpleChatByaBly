@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleChatByaBly</string>
+    <string name="unable_to_connect">Unable to connect. Try later</string>
+    <string name="unable_to_send_message">Unable to send message. Try again</string>
+</resources>
