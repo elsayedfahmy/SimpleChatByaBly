@@ -25,6 +25,8 @@ import com.example.elsayedfahmy.simplechatbyably.connection.MessageHistoryRetrie
 import com.example.elsayedfahmy.simplechatbyably.connection.PresenceHistoryRetrievedCallback;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
+
+import io.ably.lib.realtime.AblyRealtime;
 import io.ably.lib.realtime.Channel;
 import io.ably.lib.realtime.Presence;
 import io.ably.lib.types.AblyException;
@@ -33,7 +35,12 @@ import io.ably.lib.types.PresenceMessage;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
+    private  final  static  String API_key="NduL7Q.o0H76Q:f-GeNfwU8Uom1JmB";
+    AblyRealtime realtime = new AblyRealtime(API_key);
+    Channel channel = realtime.channels.get("chattest");
+
     //Subscribing to a channel
+    //Channel A class representing a Channel belonging to this  application.
     ChatScreenAdapter adapter;
     Channel.MessageListener messageListener = new Channel.MessageListener() {
         @Override
@@ -42,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
     //---------------------------------------------------------------------------------------
-    private  final  static  String API_key="NduL7Q.o0H76Q:f-GeNfwU8Uom1JmB";
+
     // Presence on a channel
     private boolean activityPaused = false;
     private Handler isUserTypingHandler = new Handler();
@@ -208,6 +215,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
         }
     };
+
+    public MainActivity() throws AblyException {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
